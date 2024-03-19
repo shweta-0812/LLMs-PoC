@@ -1,3 +1,4 @@
 .env
-paLM_venv/
+gemini_venv/
 .idea/
+gemini/__pycache__/
