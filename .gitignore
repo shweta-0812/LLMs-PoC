@@ -1,4 +1,10 @@
 .env
-gemini_venv/
 .idea/
+
+gemini/.env
+gemini_venv/
 gemini/__pycache__/
+
+langchain_venv/
+langchain/__pycache__/
+langchain/.env
