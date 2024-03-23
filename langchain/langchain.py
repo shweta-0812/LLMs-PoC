@@ -1,8 +1,4 @@
-import openai
 from utils import get_api_key
-from dotenv import load_dotenv, find_dotenv
-
-_ = load_dotenv(find_dotenv())  # read local .env file
 
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate

@@ -8,3 +8,8 @@ gemini/__pycache__/
 langchain_venv/
 langchain/__pycache__/
 langchain/.env
+
+
+weaviate_venv/
+weaviate/__pycache__/
+weaviate/.env
