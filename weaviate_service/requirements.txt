@@ -31,5 +31,5 @@ tqdm==4.66.2
 typing_extensions==4.10.0
 urllib3==2.2.1
 validators==0.22.0
-weaviate-client==3.26.2
+weaviate-client==4.5.4
 Werkzeug==3.0.1

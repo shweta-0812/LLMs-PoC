@@ -19,7 +19,7 @@ services:
 
     ports:
     - 8080:8080
-    - 50051:50051
+    - 50051:50051 # Make sure a port for gRPC is open to Weaviate.The default port is 50051.
 
     volumes:
     - weaviate_data:/var/lib/weaviate

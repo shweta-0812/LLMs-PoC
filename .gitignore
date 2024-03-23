@@ -11,5 +11,5 @@ langchain/.env
 
 
 weaviate_venv/
-weaviate/__pycache__/
-weaviate/.env
+weaviate_service/__pycache__/
+weaviate_service/.env
