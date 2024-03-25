@@ -3,7 +3,7 @@ import json
 import weaviate
 # from weaviate import EmbeddedOptions # Embedded Weaviate is a new deployment model that runs a Weaviate instance from your application code rather than from a stand-alone Weaviate server installation.
 from dotenv import load_dotenv, find_dotenv
-
+import openai
 from utils import get_env_key, json_print, sample_data_download
 from db.weaviate_schemas import SCHEMAS
 
@@ -18,17 +18,35 @@ WEAVIATE_DB_GRPC_PORT = get_env_key('WEAVIATE_DB_GRPC_PORT')
 WEAVIATE_DB_GRPC_SECURE = get_env_key('WEAVIATE_DB_GRPC_SECURE')
 WEAVIATE_API_KEY = get_env_key('WEAVIATE_API_KEY')
 
-# OPENAI_API_KEY = get_api_key('OPENAI_API_KEY')
-# OPENAI_API_BASE = get_api_key('OPENAI_API_BASE')
-# openai.api_key = OPENAI_API_KEY
+OPENAI_API_KEY = get_env_key('OPENAI_API_KEY')
+OPENAI_API_BASE = get_env_key('OPENAI_API_BASE')
+openai.api_key = get_env_key
+
+COHERE_API_KEY = get_env_key('COHERE_API_KEY')
+COHERE_API_BASE = get_env_key('COHERE_API_BASE')
 
 
 '''
     initialise client
+    # headers={
+    #     "X-OpenAI-Api-Key": OPENAI_API_KEY  # Or any other inference API keys,
+    #     "X-OpenAI-BaseURL": OPENAI_API_BASE,
+    #     "X-Cohere-Api-Key": "COHERE_API_KEY",
+    #     "X-Cohere-BaseURL": "COHERE_API_BASE"
+    # }
+
 '''
 
 
-def initialise_weaviate_client():
+def initialise_weaviate_client(open_ai=False, cohere=False):
+    headers = {}
+    if open_ai:
+        headers["X-OpenAI-Api-Key"] = OPENAI_API_KEY
+        headers["X-OpenAI-BaseURL"] = OPENAI_API_BASE
+    if cohere:
+        headers[ "X-Cohere-Api-Key"] = COHERE_API_KEY
+        headers[ "X-Cohere-BaseURL"] = COHERE_API_BASE
+
     return weaviate.connect_to_custom(
         http_host=WEAVIATE_DB_HOST,
         http_port=WEAVIATE_DB_PORT,
@@ -36,11 +54,9 @@ def initialise_weaviate_client():
         grpc_host=WEAVIATE_DB_GRPC_HOST,
         grpc_port=WEAVIATE_DB_GRPC_PORT,
         grpc_secure=WEAVIATE_DB_GRPC_SECURE,
-        auth_credentials=weaviate.auth.AuthApiKey(WEAVIATE_API_KEY)
-        # headers={
-        #     "X-OpenAI-Api-Key": OPENAI_API_KEY  # Or any other inference API keys,
-        #     "X-OpenAI-BaseURL": OPENAI_API_BASE,
-        # }
+        auth_credentials=weaviate.auth.AuthApiKey(WEAVIATE_API_KEY),
+        headers=headers
+
     )
 
 

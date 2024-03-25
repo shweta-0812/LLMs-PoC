@@ -24,3 +24,13 @@ def get_env_key(key):
     if not env_key:
         raise ValueError("Key environment variable is not set.")
     return env_key
+
+
+# Use the json.loads() function.: This function will parse the JSON string and return a Python object. If the string
+# is not valid JSON, it will throw a ValueError exception. You can use this exception to assert that the value is not
+# a JSON.
+def assert_is_json(string):
+    try:
+        json.loads(string)
+    except ValueError:
+        raise AssertionError("String is not a valid JSON")

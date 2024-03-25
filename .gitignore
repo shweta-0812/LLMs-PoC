@@ -13,3 +13,8 @@ langchain/.env
 weaviate_venv/
 weaviate_service/__pycache__/
 weaviate_service/.env
+weaviate_service/db/__pycache__/*
+weaviate_service/search/_pycache__/*
+weaviate_service/db/__pycache__/weaviate_client.cpython-312.pyc
+weaviate_service/search/__pycache__/
+*/__pycache__/*

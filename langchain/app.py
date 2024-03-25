@@ -54,17 +54,17 @@ def simple_retrieval_chain():
 
 @application.route("/simple_conversation_retrival_chain", methods=['POST'])
 def simple_conversation_retrival_chain():
-    template = """Answer the question based only on the following context:
-    {context}
-
-    Question: {question}
-    """
-    template_options = {
-        'context': "",
-        'question': ""
-    }
-    # template = request.get_json()['template']
-    # template_options = request.get_json()['template_options']
+    # template = """Answer the question based only on the following context:
+    # {context}
+    #
+    # Question: {question}
+    # """
+    # template_options = {
+    #     'context': "",
+    #     'question': ""
+    # }
+    template = request.get_json()['template']
+    template_options = request.get_json()['template_options']
     response = simple_conversation_retrival_chain(template=template, template_options=template_options)
     return jsonify({'status': 'success', 'response': response})
 
